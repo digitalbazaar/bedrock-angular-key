@@ -8,7 +8,7 @@
 define(['forge/js/pki'], function(pki) {
 
 /* @ngInject */
-function factory(brAlertService, brKeyService, config) {
+function factory(brAlertService, brKeyService, brIdentityService, config) {
   return {
     restrict: 'A',
     scope: {},
@@ -34,6 +34,13 @@ function factory(brAlertService, brKeyService, config) {
       '@context': config.data.contextUrls.identity,
       label: 'Signing Key 1'
     };
+    // use local id if possible
+    if('sysSlug' in brIdentityService.identity) {
+      model.key.owner = brIdentityService.generateUrl({
+        identityMethod: 'shortId',
+        identityShortId: brIdentityService.identity.sysSlug
+      })
+    }
 
     // prepare forge
     var forge = {pki: pki()};
