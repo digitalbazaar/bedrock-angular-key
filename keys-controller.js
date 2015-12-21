@@ -17,7 +17,9 @@ function factory($routeParams, brIdentityService, brKeyService, config) {
     identityMethod: 'route'
   });
   self.identity = brIdentityService.identity;
-  self.isOwner = self.identity && (self.identity.id === _keys.identityId);
+  self.isOwner = self.identity && (
+    (self.identity.id === _keys.identityId) ||
+    (self.identity.sysSlug === $routeParams.identity));
   self.state = _keys.state;
   self.keys = _keys.keys;
   self.modals = {
