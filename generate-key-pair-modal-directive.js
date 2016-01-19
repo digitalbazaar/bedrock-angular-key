@@ -39,7 +39,7 @@ function factory(brAlertService, brKeyService, brIdentityService, config) {
       model.key.owner = brIdentityService.generateUrl({
         identityMethod: 'shortId',
         identityShortId: brIdentityService.identity.sysSlug
-      })
+      });
     }
 
     // prepare forge
