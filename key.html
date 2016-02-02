@@ -42,7 +42,8 @@
         <dt>Owner</dt>
         <dd>
           <ul class="list-unstyled">
-            <li><a rel="sec:owner" href="{{model.key.owner}}">{{model.key.owner}}</a></li>
+            <li ng-show="model.linkOwner"><a rel="sec:owner" href="{{model.key.owner}}">{{model.key.owner}}</a></li>
+            <li ng-hide="model.linkOwner"><span rel="sec:owner">{{model.key.owner}}</span></li>
           </ul>
         </dd>
 

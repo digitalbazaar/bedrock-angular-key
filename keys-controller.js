@@ -11,17 +11,10 @@ define([], function() {
 'use strict';
 
 /* @ngInject */
-function factory($routeParams, brIdentityService, brKeyService, config) {
+function factory($scope, $routeParams, brAlertService, brIdentityService,
+  brKeyService, brSessionService, config) {
   var self = this;
-  var _keys = brKeyService.get({
-    identityMethod: 'route'
-  });
-  self.identity = brIdentityService.identity;
-  self.isOwner = self.identity && (
-    (self.identity.id === _keys.identityId) ||
-    (self.identity.sysSlug === $routeParams.identity));
-  self.state = _keys.state;
-  self.keys = _keys.keys;
+  self.hideGenerate = !!$scope.hideGenerate;
   self.modals = {
     showGenerateKeyPair: false,
     showAddKey: false,
@@ -59,12 +52,38 @@ function factory($routeParams, brIdentityService, brKeyService, config) {
   };
   self.confirmRevokeKey = function(err, result) {
     if(!err && result === 'ok') {
-      _keys.revoke(self.modals.key.id);
+      self.service.revoke(self.modals.key.id);
     }
     self.modals.key = null;
   };
 
-  _keys.collection.getAll();
+  self.init = function(identity) {
+    var sessionPromise = brSessionService.get().then(function(session) {
+      self.isOwner = (session.identity &&
+        (identity.id == session.identity.id));
+    });
+    var keysPromise = brKeyService.getService({
+      identity: identity
+    }).then(function(service) {
+      self.service = service;
+      self.keys = service.keys;
+      self.state = service.state;
+      return self.service.collection.getAll();
+    });
+    Promise.all([sessionPromise, keysPromise]).catch(function(err) {
+      brAlertService.add('error', err, {scope: $scope});
+    }).then(function() {
+      $scope.$apply();
+    });
+  };
+
+  $scope.$watch('identity', function(value) {
+    // FIXME: clear state if no value?
+    if(value) {
+      self.init(value);
+    }
+    self.identity = value;
+  });
 }
 
 return {KeysController: factory};

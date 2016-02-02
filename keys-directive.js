@@ -15,8 +15,11 @@ return {brKeys: deps.concat(factory)};
 
 function factory() {
   return {
+    scope: {
+      identity: '=brIdentity',
+      hideGenerate: '=?brHideGenerate'
+    },
     restrict: 'E',
-    replace: true,
     templateUrl: requirejs.toUrl('bedrock-angular-key/keys-view.html')
   };
 }

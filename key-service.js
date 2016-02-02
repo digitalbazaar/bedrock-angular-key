@@ -14,15 +14,30 @@ function factory(
   $rootScope, brIdentityService, brModelService, brRefreshService,
   brResourceService, config) {
   var service = {};
+
+  // collections indexed by id
   var cache = {};
 
+  var basePath = config.data['key-http'].basePath;
+
   service.get = function(options) {
-    var identityId = brIdentityService.generateUrl(options);
-    var url = identityId + '/keys';
+    var identityId;
+    var url;
+    if(options.identity) {
+      identityId = options.identity.id;
+      url = basePath + '?owner=' + encodeURIComponent(identityId);
+    } else {
+      identityId = brIdentityService.generateUrl(options);
+      if(!identityId) {
+        url = basePath;
+      } else {
+        url = identityId + '/keys';
+      }
+    }
     options = angular.extend({}, {
       // get keys for current logged in identity by default
       identityId: identityId,
-      url: window.data['key-http'].basePath,
+      url: basePath,
       urls: {
         getAll: url
       }
@@ -33,6 +48,10 @@ function factory(
       brRefreshService.register(cache[url].collection);
     }
     return cache[url];
+  };
+
+  service.getService = function(options) {
+    return Promise.resolve(service.get(options));
   };
 
   /**

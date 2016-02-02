@@ -16,7 +16,7 @@ function factory($scope, brAlertService, brKeyService, brRefreshService) {
   var self = this;
 
   var _keys = brKeyService.get({
-    identityMethod: 'route'
+    identityMethod: 'none'
   });
   self.modals = {};
   self.state = {
@@ -29,6 +29,7 @@ function factory($scope, brAlertService, brKeyService, brRefreshService) {
     brAlertService.clear();
     _keys.collection.getCurrent(opts).then(function(key) {
       self.key = key;
+      self.linkOwner = (key.owner.indexOf('http') === 0);
     }).catch(function(err) {
       brAlertService.add('error', err);
       self.key = null;

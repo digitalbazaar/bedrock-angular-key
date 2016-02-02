@@ -13,7 +13,10 @@ define(['angular'], function(angular) {
 function factory(brAlertService, brKeyService, config) {
   return {
     restrict: 'A',
-    scope: {sourceKey: '=brKey'},
+    scope: {
+      identity: '=brIdentity',
+      sourceKey: '=brKey'
+    },
     require: '^stackable',
     templateUrl: requirejs.toUrl('bedrock-angular-key/edit-key-modal.html'),
     link: Link
@@ -22,7 +25,7 @@ function factory(brAlertService, brKeyService, config) {
   function Link(scope, element, attrs, stackable) {
     var model = scope.model = {};
     var keys = brKeyService.get({
-      identityMethod: 'route'
+      identity: scope.identity
     });
     model.modulePath = requirejs.toUrl('bedrock-angular-key/');
     model.mode = 'edit';

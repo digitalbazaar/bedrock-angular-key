@@ -16,7 +16,9 @@ function factory(
   brAlertService, brKeyService, config) {
   return {
     restrict: 'A',
-    scope: {},
+    scope: {
+      identity: '=brIdentity'
+    },
     require: '^stackable',
     templateUrl: requirejs.toUrl('bedrock-angular-key/add-key-modal.html'),
     link: Link
@@ -25,7 +27,7 @@ function factory(
   function Link(scope, element, attrs, stackable) {
     var model = scope.model = {};
     var keys = brKeyService.get({
-      identityMethod: 'route'
+      identity: scope.identity
     });
     model.modulePath = requirejs.toUrl('bedrock-angular-key/');
     model.mode = 'add';

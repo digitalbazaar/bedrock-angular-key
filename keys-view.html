@@ -1,7 +1,7 @@
 <div class="section section-keys" ng-controller="KeysController as model">
   <br-headline br-title="Keys" br-loading="model.state.loading">
     <ul class="stackable-menu dropdown-menu">
-      <li ng-show="model.isOwner">
+      <li ng-show="model.isOwner && !model.hideGenerate">
         <a class="stackable-cancel"
           ng-click="model.modals.showGenerateKeyPair=true"><i class="fa fa-plus"></i> Generate Key Pair</a>
       </li>
@@ -78,15 +78,19 @@
   </div>
   <stackable-modal stackable="model.modals.showGenerateKeyPair"
     br-lazy-compile="model.modals.showGenerateKeyPair" br-lazy-id="br-keys-view-generate-key-pair-modal">
-    <div br-generate-key-pair-modal></div>
+    <div br-generate-key-pair-modal
+      br-identity="model.identity"></div>
   </stackable-modal>
   <stackable-modal stackable="model.modals.showAddKey"
     br-lazy-compile="model.modals.showAddKey" br-lazy-id="br-keys-view-add-key-modal">
-    <div br-add-key-modal></div>
+    <div br-add-key-modal
+      br-identity="model.identity"></div>
   </stackable-modal>
   <stackable-modal stackable="model.modals.showEditKey"
     br-lazy-compile="model.modals.showEditKey" br-lazy-id="br-keys-view-edit-key-modal">
-    <div br-edit-key-modal br-key="model.modals.key"></div>
+    <div br-edit-key-modal
+      br-identity="model.identity"
+      br-key="model.modals.key"></div>
   </stackable-modal>
 
   <!-- Revoking key alert -->

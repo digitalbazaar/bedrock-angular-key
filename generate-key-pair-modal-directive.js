@@ -8,10 +8,12 @@
 define(['forge/js/pki'], function(pki) {
 
 /* @ngInject */
-function factory(brAlertService, brKeyService, brIdentityService, config) {
+function factory(brAlertService, brKeyService, config) {
   return {
     restrict: 'A',
-    scope: {},
+    scope: {
+      identity: '=brIdentity'
+    },
     require: '^stackable',
     templateUrl: requirejs.toUrl(
       'bedrock-angular-key/generate-key-pair-modal.html'),
@@ -21,7 +23,7 @@ function factory(brAlertService, brKeyService, brIdentityService, config) {
   function Link(scope, element, attrs, stackable) {
     var model = scope.model = {};
     var keys = brKeyService.get({
-      identityMethod: 'route'
+      identity: scope.identity
     });
     model.modulePath = requirejs.toUrl('bedrock-angular-key/');
     model.mode = 'generate';
@@ -32,15 +34,9 @@ function factory(brAlertService, brKeyService, brIdentityService, config) {
     };
     model.key = {
       '@context': config.data.contextUrls.identity,
+      owner: scope.identity.id,
       label: 'Signing Key 1'
     };
-    // use local id if possible
-    if('sysSlug' in brIdentityService.identity) {
-      model.key.owner = brIdentityService.generateUrl({
-        identityMethod: 'shortId',
-        identityShortId: brIdentityService.identity.sysSlug
-      });
-    }
 
     // prepare forge
     var forge = {pki: pki()};
