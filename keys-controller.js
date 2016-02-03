@@ -11,8 +11,8 @@ define([], function() {
 'use strict';
 
 /* @ngInject */
-function factory($scope, $routeParams, brAlertService, brIdentityService,
-  brKeyService, brSessionService, config) {
+function factory($scope, $routeParams, brAlertService, brKeyService,
+  brSessionService, config) {
   var self = this;
   self.hideGenerate = !!$scope.hideGenerate;
   self.modals = {
@@ -31,6 +31,7 @@ function factory($scope, $routeParams, brAlertService, brIdentityService,
     self.modals.showEditKey = true;
     self.modals.key = key;
   };
+  /* FIXME: move outside of key module
   self.setDefaultSigningKeyId = function(keyId) {
     var update = {
       '@context': config.data.contextUrls.identity,
@@ -46,6 +47,7 @@ function factory($scope, $routeParams, brAlertService, brIdentityService,
         }
       });
   };
+  */
   self.revokeKey = function(key) {
     self.modals.showRevokeKeyAlert = true;
     self.modals.key = key;

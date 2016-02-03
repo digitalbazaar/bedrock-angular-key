@@ -31,11 +31,13 @@
         <!-- Name -->
         <td>
           <a href="{{key.id}}">{{key.label}}</a>
+          <!-- FIXME: move outside key module
           <span ng-show="model.identity.sysSigningKey == key.id">
             <i class="icon fa fa-star"
               br-tooltip="This is the default signing key."
               br-options="{placement: 'bottom'}"></i>
           </span>
+          -->
         </td>
         <!-- Status -->
         <td class="br-compact">
@@ -53,11 +55,13 @@
                 </a>
               </li>
               <!-- Default Signing Key -->
+              <!-- FIXME: move outside key module
               <li ng-show="model.identity.sysSigningKey != key.id && key.sysStatus == 'active'">
                 <a class="stackable-cancel" ng-click="model.setDefaultSigningKeyId(key.id)">
                   <i class="fa fa-star"></i> Set as default
                 </a>
               </li>
+              -->
               <!-- Revoke -->
               <li class="divider" ng-hide="key.sysStatus == 'disabled'"></li>
               <li class="alert-danger" ng-hide="key.sysStatus == 'disabled'">

@@ -11,28 +11,24 @@ define([], function() {
 
 /* @ngInject */
 function factory(
-  $rootScope, brIdentityService, brModelService, brRefreshService,
-  brResourceService, config) {
+  $rootScope, brModelService, brRefreshService, brResourceService, config) {
   var service = {};
 
-  // collections indexed by id
+  // collections indexed by identity id
   var cache = {};
 
   var basePath = config.data['key-http'].basePath;
 
   service.get = function(options) {
+    options = options || {};
     var identityId;
     var url;
     if(options.identity) {
+      url = basePath + '?owner=' + encodeURIComponent(options.identity.id);
       identityId = options.identity.id;
-      url = basePath + '?owner=' + encodeURIComponent(identityId);
     } else {
-      identityId = brIdentityService.generateUrl(options);
-      if(!identityId) {
-        url = basePath;
-      } else {
-        url = identityId + '/keys';
-      }
+      url = basePath;
+      identityId = null;
     }
     options = angular.extend({}, {
       // get keys for current logged in identity by default
@@ -42,12 +38,18 @@ function factory(
         getAll: url
       }
     }, options);
-    if(!(url in cache)) {
-      cache[url] = new Service(options);
-      // register for system-wide refreshes
-      brRefreshService.register(cache[url].collection);
+    // only cache for identity id collections
+    if(identityId) {
+      if(!(url in cache)) {
+        cache[url] = new Service(options);
+        // register for system-wide refreshes
+        brRefreshService.register(cache[url].collection);
+      }
+      return cache[url];
+    } else {
+      // FIXME: register/unregister for non-identity services
+      return new Service(options);
     }
-    return cache[url];
   };
 
   service.getService = function(options) {

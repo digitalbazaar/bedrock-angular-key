@@ -15,9 +15,7 @@ define([], function() {
 function factory($scope, brAlertService, brKeyService, brRefreshService) {
   var self = this;
 
-  var _keys = brKeyService.get({
-    identityMethod: 'none'
-  });
+  var _keys = brKeyService.get();
   self.modals = {};
   self.state = {
     keys: _keys.state
