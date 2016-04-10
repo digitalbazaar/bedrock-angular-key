@@ -5,9 +5,9 @@
   "moduleType": ["amd"],
   "ignore": [],
   "dependencies": {
-    "bedrock-angular": "^1.0.1",
-    "bedrock-angular-alert": "^1.0.0",
-    "bedrock-angular-modal": "^1.0.0",
-    "bedrock-angular-resource": "^1.0.1"
+    "bedrock-angular": "^2.0.0",
+    "bedrock-angular-alert": "^2.0.0",
+    "bedrock-angular-modal": "^2.0.0",
+    "bedrock-angular-resource": "^2.0.0"
   }
 }
