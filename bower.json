@@ -7,7 +7,7 @@
   "dependencies": {
     "bedrock-angular": "^2.0.0",
     "bedrock-angular-alert": "^2.0.0",
-    "bedrock-angular-modal": "^2.0.0",
+    "bedrock-angular-modal": "^3.0.0",
     "bedrock-angular-resource": "^2.0.0"
   }
 }
