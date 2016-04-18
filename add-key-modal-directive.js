@@ -15,7 +15,7 @@ function factory(
   $location, $routeParams, $sce, $timeout,
   brAlertService, brKeyService, config) {
   return {
-    restrict: 'A',
+    restrict: 'AE',
     scope: {
       identity: '=brIdentity'
     },
@@ -41,6 +41,7 @@ function factory(
     model.key = {
       '@context': config.data.contextUrls.identity,
       label: 'Access Key 1',
+      owner: scope.identity.id,
       publicKeyPem: ''
     };
     if($routeParams.service === 'add-key') {
@@ -82,12 +83,11 @@ function factory(
         } else {
           // clear query params
           $location.search({});
-          model.loading = false;
         }
-        scope.$apply();
       }).catch(function(err) {
-        model.loading = false;
         brAlertService.add('error', err, {scope: scope});
+      }).then(function() {
+        model.loading = false;
         scope.$apply();
       });
     };

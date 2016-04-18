@@ -11,8 +11,8 @@ define([], function() {
 'use strict';
 
 /* @ngInject */
-function factory($scope, $routeParams, brAlertService, brKeyService,
-  brSessionService, config) {
+function factory($scope, $routeParams, brAlertService, brIdentityService,
+  brKeyService, brSessionService, config) {
   var self = this;
   self.hideGenerate = !!$scope.hideGenerate;
   self.modals = {
@@ -61,6 +61,11 @@ function factory($scope, $routeParams, brAlertService, brKeyService,
 
   self.init = function(identity) {
     var sessionPromise = brSessionService.get().then(function(session) {
+      console.log('##############', session);
+      brIdentityService.collection.get(session.identity.id)
+        .then(function(result) {
+          console.log('##############', result);
+        });
       self.isOwner = (session.identity &&
         (identity.id == session.identity.id));
     });
