@@ -5,7 +5,7 @@
         <a class="stackable-cancel"
           ng-click="model.modals.showGenerateKeyPair=true"><i class="fa fa-plus"></i> Generate Key Pair</a>
       </li>
-      <li ng-show="model.isOwner">
+      <li ng-show="model.operations.add">
         <a class="stackable-cancel"
           ng-click="model.modals.showAddKey=true"><i class="fa fa-plus"></i> Add Key</a>
       </li>
@@ -21,7 +21,7 @@
       <tr>
         <th>Name</th>
         <th class="br-compact">Status</th>
-        <th class="br-action" ng-show="model.isOwner">Action</th>
+        <th class="br-action" ng-show="model.operations.add">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -45,7 +45,7 @@
           <span ng-show="key.sysStatus == 'active'">Active</span>
         </td>
         <!-- Action -->
-        <td class="br-action" ng-show="model.isOwner">
+        <td class="br-action" ng-show="model.operations.add">
           <br-action-menu>
             <ul class="dropdown-menu stackable-menu">
               <!-- Edit -->
@@ -76,7 +76,7 @@
     </tbody>
   </table>
   <div ng-show="!model.state.loading && model.keys.length == 0">
-    <p class="text-center">You have no keys associated with this identity.
+    <p class="text-center">There are no keys associated with this identity.
     Access keys can be added by using an external website or application
     or one can be generated that this site controls.</p>
   </div>

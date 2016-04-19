@@ -60,9 +60,16 @@ function factory($scope, $routeParams, brAlertService, brKeyService,
   };
 
   self.init = function(identity) {
+    self.operations = {
+      add: false,
+      remove: false
+    };
     var sessionPromise = brSessionService.get().then(function(session) {
       self.isOwner = (session.identity &&
         (identity.id == session.identity.id));
+      if(self.isOwner || hasPermission(session.identity, 'PUBLIC_KEY_CREATE')) {
+        self.operations.add = true;
+      }
     });
     var keysPromise = brKeyService.getService({
       identity: identity
@@ -86,6 +93,15 @@ function factory($scope, $routeParams, brAlertService, brKeyService,
     }
     self.identity = value;
   });
+}
+
+// TODO: allow users to modify specific resources
+function hasPermission(identity, permission) {
+  // if sysPermissionTable is an object, it is a map of specific resources
+  // to which this permission applies.
+  // boolean value indicates that the user has unrestricted permissions
+  return (permission in identity.sysPermissionTable &&
+    typeof identity.sysPermissionTable[permission] === 'boolean');
 }
 
 return {KeysController: factory};
