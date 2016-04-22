@@ -37,6 +37,6 @@ function factory($scope, brAlertService, brKeyService, brRefreshService) {
   })();
 }
 
-return {KeyController: factory};
+return {brKeyController: factory};
 
 });

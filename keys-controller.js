@@ -104,6 +104,6 @@ function hasPermission(identity, permission) {
     identity.sysPermissionTable[permission] === true);
 }
 
-return {KeysController: factory};
+return {brKeysController: factory};
 
 });
