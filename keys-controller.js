@@ -101,7 +101,7 @@ function hasPermission(identity, permission) {
   // to which this permission applies.
   // boolean value indicates that the user has unrestricted permissions
   return (permission in identity.sysPermissionTable &&
-    typeof identity.sysPermissionTable[permission] === 'boolean');
+    identity.sysPermissionTable[permission] === true);
 }
 
 return {KeysController: factory};
