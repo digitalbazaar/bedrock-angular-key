@@ -101,7 +101,7 @@
   <stackable-modal stackable="model.modals.showRevokeKeyAlert"
     stackable-closed="model.confirmRevokeKey(err, result)"
     br-lazy-compile="model.modals.showRevokeKeyAlert" br-lazy-id="br-keys-view-revoke-key-modal">
-    <div br-alert-modal
+    <br-alert-modal
       br-modal-header="Warning"
       br-modal-ok="Revoke"
       br-modal-cancel="Cancel">
@@ -114,6 +114,6 @@
       You can re-enable your access and applications by registering a new
       key.</p>
       <p>Are you sure that you want to revoke this key?</p>
-    </div>
+    </br-alert-modal>
   </stackable-modal>
 </div>
