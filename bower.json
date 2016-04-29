@@ -1,6 +1,6 @@
 {
   "name": "bedrock-angular-key",
-  "version": "0.0.1-dev",
+  "version": "1.0.0",
   "main": "./index.js",
   "moduleType": ["amd"],
   "ignore": [],
