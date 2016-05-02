@@ -1,6 +1,6 @@
 {
   "name": "bedrock-angular-key",
-  "version": "1.0.1-dev",
+  "version": "2.0.0",
   "main": "./main.js",
   "moduleType": ["amd"],
   "ignore": [],
@@ -9,6 +9,7 @@
     "bedrock-angular-alert": "^2.0.0",
     "bedrock-angular-modal": "^3.0.0",
     "bedrock-angular-resource": "^2.0.0",
+    "bedrock-angular-selector": "^3.0.0",
     "forge": "~0.6.34"
   }
 }
