@@ -3,7 +3,8 @@
   br-on-add-item="$ctrl.showAddModal=true"
   br-item-type="'Key'"
   br-items="$ctrl.keys"
-  br-fixed="$ctrl.fixed">
+  br-fixed="$ctrl.fixed"
+  br-show-choices="$ctrl.showChoices">
   <br-selector-selected>
     <div>
       <strong>{{selected.label}}</strong>
@@ -14,7 +15,7 @@
   <br-selector-choices>
     <ul class="list-unstyled">
       <li class="br-item-hover well" ng-repeat="key in $ctrl.keys"
-        ng-click="$ctrl.selected=key">
+        ng-click="$ctrl.selected=key; $ctrl.showChoices=false">
         <strong>{{key.label}}</strong>
         <br/>
         <small>{{key.id}}</small>
