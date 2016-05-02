@@ -1,7 +1,7 @@
 /*!
  * Generate Key Pair Modal.
  *
- * Copyright (c) 2014-2015 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2014-2016 Digital Bazaar, Inc. All rights reserved.
  *
  * @author Dave Longley
  */
@@ -10,7 +10,7 @@ define(['forge/js/pki'], function(pki) {
 /* @ngInject */
 function factory(brAlertService, brKeyService, config) {
   return {
-    restrict: 'A',
+    restrict: 'EA',
     scope: {
       identity: '=brIdentity'
     },
