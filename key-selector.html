@@ -1,12 +1,14 @@
 <br-selector br-selected="$ctrl.selected"
   br-on-select="$ctrl.onSelect({selected: selected})"
+  br-on-deselect="$ctrl.onDeselect()"
   br-on-add-item="$ctrl.showAddModal=true"
   br-item-type="'Key'"
   br-items="$ctrl.keys"
   br-fixed="$ctrl.fixed"
-  br-show-choices="$ctrl.showChoices">
+  br-show-choices="$ctrl.showChoices"
+  br-allow-select-none="true">
   <br-selector-selected>
-    <div>
+    <div ng-if="$ctrl.selected">
       <strong>{{$ctrl.selected.label}}</strong>
       <br/>
       <small>{{$ctrl.selected.id}}</small>

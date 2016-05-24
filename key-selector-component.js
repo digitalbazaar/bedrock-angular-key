@@ -26,14 +26,6 @@ function register(module) {
 /* @ngInject */
 function Ctrl($scope) {
   var self = this;
-
-  $scope.$watchCollection(function() {
-    return self.keys;
-  }, function() {
-    if(!self.selected || $.inArray(self.selected, self.keys) === -1) {
-      self.selected = self.keys[0] || null;
-    }
-  });
 }
 
 return register;
