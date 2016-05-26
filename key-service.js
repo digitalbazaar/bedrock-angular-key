@@ -11,7 +11,8 @@ define([], function() {
 
 /* @ngInject */
 function factory(
-  $rootScope, brModelService, brRefreshService, brResourceService, config) {
+  $rootScope, $httpParamSerializer, brModelService,
+  brRefreshService, brResourceService, config) {
   var service = {};
 
   // collections indexed by identity id
@@ -23,11 +24,13 @@ function factory(
     options = options || {};
     var identityId;
     var url;
+    var params = $httpParamSerializer(options.params)
     if(options.identity) {
-      url = basePath + '?owner=' + encodeURIComponent(options.identity.id);
+      url = basePath +
+        '?owner=' + encodeURIComponent(options.identity.id) + '&' + params;
       identityId = options.identity.id;
     } else {
-      url = basePath;
+      url = basePath + '?' + params;
       identityId = null;
     }
     options = angular.extend({}, {
