@@ -1,5 +1,10 @@
 # bedrock-angular-key ChangeLog
 
+## 2.1.0 - 2016-05-26
+
+### Added
+- Allow deselect option in key selector.
+
 ## 2.0.1 - 2016-05-16
 
 ### Fixed
