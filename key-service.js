@@ -24,13 +24,19 @@ function factory(
     options = options || {};
     var identityId;
     var url;
+    // TODO: Let's use a URL formatting library for this.
     var params = $httpParamSerializer(options.params)
     if(options.identity) {
-      url = basePath +
-        '?owner=' + encodeURIComponent(options.identity.id) + '&' + params;
+      url = basePath + '?owner=' + encodeURIComponent(options.identity.id);
+      if(params) {
+        url = url + '&' + params;
+      }
       identityId = options.identity.id;
     } else {
-      url = basePath + '?' + params;
+      url = basePath;
+      if(params) {
+        url = url + '?' + params;
+      }
       identityId = null;
     }
     options = angular.extend({}, {
