@@ -7,8 +7,9 @@ define([
   'angular',
   './add-key-modal-directive',
   './edit-key-modal-directive',
-  './generate-key-pair-modal-directive',
+  './generate-key-pair-modal-component',
   './key-controller',
+  './key-form-component',
   './key-selector-component',
   './key-service',
   './keys-controller',
@@ -17,8 +18,9 @@ define([
   angular,
   addKeyModalDirective,
   editKeyModalDirective,
-  generateKeyPairModalDirective,
+  generateKeyPairModalComponent,
   keyController,
+  keyFormComponent,
   keySelectorComponent,
   keyService,
   keysController,
@@ -33,11 +35,12 @@ var module = angular.module('bedrock.key', []);
   register(module);
 });*/
 keySelectorComponent(module);
+generateKeyPairModalComponent(module);
+keyFormComponent(module);
 
 // TODO: refactor
 module.directive(addKeyModalDirective);
 module.directive(editKeyModalDirective);
-module.directive(generateKeyPairModalDirective);
 module.controller(keyController);
 module.service(keyService);
 module.controller(keysController);

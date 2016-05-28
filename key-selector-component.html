@@ -1,6 +1,5 @@
 <br-selector br-selected="$ctrl.selected"
   br-on-select="$ctrl.onSelect({selected: selected})"
-  br-on-deselect="$ctrl.onDeselect()"
   br-on-add-item="$ctrl.showAddModal=true"
   br-item-type="'Key'"
   br-items="$ctrl.keys"
@@ -28,5 +27,6 @@
 <stackable-modal stackable="$ctrl.showAddModal"
   stackable-closed="!err && ($ctrl.selected=result)"
   br-lazy="$ctrl.showAddModal" br-lazy-id="br-key-selector-add-key-modal">
-  <br-generate-key-pair-modal br-identity="$ctrl.identity"></br-generate-key-pair-modal>
+  <br-generate-key-pair-modal br-identity="$ctrl.identity"
+    br-on-key-generate="$ctrl.onKeyGenerate(key)"></br-generate-key-pair-modal>
 </stackable-modal>

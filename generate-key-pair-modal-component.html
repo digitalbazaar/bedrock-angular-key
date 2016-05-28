@@ -1,0 +1,52 @@
+<br-modal br-title="Create Signing Key">
+  <br-modal-body>
+    <div ng-hide="$ctrl.success">
+      <div ng-transclude="help">
+        <p>
+          In order to allow this site to sign data on your behalf, you must
+          generate a signing key. This key will be stored securely and used
+          to sign data as needed. Please click "Generate Key" below to
+          begin the key-generation process.
+        </p>
+      </div>
+      <p ng-hide="$ctrl.success">
+        Please be patient as it may take a couple of minutes to complete. Once
+        completed, you will have the opportunity to enter some details about
+        the key, such as a label, before saving it.
+      </p>
+      <button type="button" class="btn btn-primary"
+        ng-disabled="$ctrl.loading"
+        ng-click="$ctrl.generateKeyPair()">
+        <i class="fa fa-gear" ng-class="{'fa-spin': $ctrl.loading}"></i>
+        Generate Key
+      </button>
+      <span ng-show="$ctrl.loading">
+        This may take a minute...
+      </span>
+    </div>
+    <div ng-show="$ctrl.success">
+      <p>
+        Your new signing key has been generated. Please enter
+        information below about the key before saving it.
+      </p>
+      <br-key-form ng-model="$ctrl"></br-key-form>
+      <p class="alert alert-success">
+        Key generated. Click "Save" to save the key.
+      </p>
+    </div>
+  </br-modal-body>
+  <br-modal-footer>
+    <span ng-show="$ctrl.success">
+      <button type="button" class="btn btn-primary"
+        ng-disabled="$ctrl.loading"
+        ng-click="$ctrl.onSave()"><i class="fa"
+          ng-class="{
+            'fa-check': !$ctrl.loading,
+            'fa-refresh fa-spin': $ctrl.loading
+          }"></i> Save
+      </button>
+    </span>
+    <button type="button" class="btn btn-default stackable-cancel"
+      ng-disabled="$ctrl.loading">Cancel</button>
+  </br-modal-footer>
+</br-modal>

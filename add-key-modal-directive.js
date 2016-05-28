@@ -29,7 +29,6 @@ function factory(
     var keys = brKeyService.get({
       identity: scope.identity
     });
-    model.modulePath = requirejs.toUrl('bedrock-angular-key/');
     model.mode = 'add';
     model.loading = false;
     model.success = false;

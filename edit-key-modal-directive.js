@@ -27,7 +27,6 @@ function factory(brAlertService, brKeyService, config) {
     var keys = brKeyService.get({
       identity: scope.identity
     });
-    model.modulePath = requirejs.toUrl('bedrock-angular-key/');
     model.mode = 'edit';
     model.loading = false;
     // copy source budget for editing

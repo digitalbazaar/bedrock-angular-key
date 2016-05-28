@@ -1,8 +1,7 @@
 <br-modal br-title="Add Key">
-  <div name="br-modal-body">
-    <br-demo-warning></br-demo-warning>
+  <br-modal-body>
     <div ng-hide="model.success">
-      <div ng-include="model.modulePath + 'key-form.html'"></div>
+      <br-key-form ng-model="model"></br-key-form>
     </div>
     <div ng-show="model.success">
       <p>
@@ -19,8 +18,8 @@
       </p>
       <pre>{{model.registrationCallback}}</pre>
     </div>
-  </div>
-  <div name="br-modal-footer">
+  </br-modal-body>
+  <br-modal-footer>
     <form method="post" action="{{model.registrationCallback}}"
       ng-submit="model.submit()">
       <span ng-show="model.loading">
@@ -43,5 +42,5 @@
         type="submit"><i class="fa fa-check"></i> Complete Registration</button>
       <button type="button" class="btn btn-default stackable-cancel" ng-disabled="model.loading">Cancel</button>
     </form>
-  </div>
+  </br-modal-footer>
 </br-modal>
