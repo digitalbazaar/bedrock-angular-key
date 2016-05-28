@@ -1,5 +1,14 @@
 # bedrock-angular-key ChangeLog
 
+## 3.0.0 - 2016-05-28
+
+### Changed
+- **BREAKING**: New API for key selector and key generator. Key
+  generation and addition actions are exposed as events that
+  other components may do something with, rather than direct
+  integration with particular key services. This allows for
+  greater flexibility and reuse of components.
+
 ## 2.1.0 - 2016-05-26
 
 ### Added
