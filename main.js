@@ -12,8 +12,7 @@ define([
   './key-form-component',
   './key-selector-component',
   './key-service',
-  './keys-controller',
-  './keys-directive'
+  './keys-component'
 ], function(
   angular,
   addKeyModalDirective,
@@ -23,8 +22,7 @@ define([
   keyFormComponent,
   keySelectorComponent,
   keyService,
-  keysController,
-  keysDirective
+  keysComponent
 ) {
 
 'use strict';
@@ -34,6 +32,7 @@ var module = angular.module('bedrock.key', []);
 /*Array.prototype.slice.call(arguments, 1).forEach(function(register) {
   register(module);
 });*/
+keysComponent(module);
 keySelectorComponent(module);
 generateKeyPairModalComponent(module);
 keyFormComponent(module);
@@ -43,8 +42,6 @@ module.directive(addKeyModalDirective);
 module.directive(editKeyModalDirective);
 module.controller(keyController);
 module.service(keyService);
-module.controller(keysController);
-module.directive(keysDirective);
 
 return module.name;
 

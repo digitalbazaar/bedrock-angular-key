@@ -1,32 +1,32 @@
-<div class="section section-keys" ng-controller="brKeysController as model">
-  <br-headline br-title="Keys" br-loading="model.state.loading">
+<div class="section section-keys">
+  <br-headline br-title="Keys" br-loading="$ctrl.state.loading">
     <ul class="stackable-menu dropdown-menu">
-      <li ng-show="model.isOwner && !model.hideGenerate">
+      <li ng-show="$ctrl.isOwner && !$ctrl.hideGenerate">
         <a class="stackable-cancel"
-          ng-click="model.modals.showGenerateKeyPair=true"><i class="fa fa-plus"></i> Generate Key Pair</a>
+          ng-click="$ctrl.modals.showGenerateKeyPair=true"><i class="fa fa-plus"></i> Generate Key Pair</a>
       </li>
-      <li ng-show="model.operations.add">
+      <li ng-show="$ctrl.operations.add">
         <a class="stackable-cancel"
-          ng-click="model.modals.showAddKey=true"><i class="fa fa-plus"></i> Add Key</a>
+          ng-click="$ctrl.modals.showAddKey=true"><i class="fa fa-plus"></i> Add Key</a>
       </li>
       <li>
         <a class="stackable-cancel"
-          ng-click="model.showRevokedKeys=!model.showRevokedKeys"><i
-          ng-show="model.showRevokedKeys" class="fa fa-check-square-o"></i><i ng-hide="model.showRevokedKeys" class="fa fa-square-o"></i> Show Revoked Keys</a>
+          ng-click="$ctrl.showRevokedKeys=!$ctrl.showRevokedKeys"><i
+          ng-show="$ctrl.showRevokedKeys" class="fa fa-check-square-o"></i><i ng-hide="$ctrl.showRevokedKeys" class="fa fa-square-o"></i> Show Revoked Keys</a>
       </li>
     </ul>
   </br-headline>
-  <table class="table table-condensed" ng-show="model.state.loading || model.keys.length > 0">
+  <table class="table table-condensed" ng-show="$ctrl.state.loading || $ctrl.keys.length > 0">
     <thead>
       <tr>
         <th>Name</th>
         <th class="br-compact">Status</th>
-        <th class="br-action" ng-show="model.operations.add">Action</th>
+        <th class="br-action" ng-show="$ctrl.operations.add">Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="key in model.keys | orderBy:'label' | orderBy:'sysStatus':reverse"
-        ng-show="key.sysStatus == 'active' || model.showRevokedKeys"
+      <tr ng-repeat="key in $ctrl.keys | orderBy:'label' | orderBy:'sysStatus':reverse"
+        ng-show="key.sysStatus == 'active' || $ctrl.showRevokedKeys"
         ng-class="{'danger': key.sysStatus == 'disabled'}">
         <!-- Name -->
         <td>
@@ -38,19 +38,19 @@
           <span ng-show="key.sysStatus == 'active'">Active</span>
         </td>
         <!-- Action -->
-        <td class="br-action" ng-show="model.operations.add">
+        <td class="br-action" ng-show="$ctrl.operations.add">
           <br-action-menu>
             <ul class="dropdown-menu stackable-menu">
               <!-- Edit -->
               <li>
-                <a class="stackable-cancel" ng-click="model.editKey(key)">
+                <a class="stackable-cancel" ng-click="$ctrl.editKey(key)">
                   <i class="fa fa-pencil"></i> Edit
                 </a>
               </li>
               <!-- Revoke -->
               <li class="divider" ng-hide="key.sysStatus == 'disabled'"></li>
               <li class="alert-danger" ng-hide="key.sysStatus == 'disabled'">
-                <a class="stackable-cancel" ng-click="model.revokeKey(key)">
+                <a class="stackable-cancel" ng-click="$ctrl.revokeKey(key)">
                   <i class="fa fa-times"></i> Revoke
                 </a>
               </li>
@@ -60,32 +60,33 @@
       </tr>
     </tbody>
   </table>
-  <div ng-show="!model.state.loading && model.keys.length == 0">
+  <div ng-show="!$ctrl.state.loading && $ctrl.keys.length == 0">
     <p class="text-center">There are no keys associated with this identity.
     Access keys can be added by using an external website or application
     or one can be generated that this site controls.</p>
   </div>
-  <stackable-modal stackable="model.modals.showGenerateKeyPair"
-    br-lazy-compile="model.modals.showGenerateKeyPair" br-lazy-id="br-keys-view-generate-key-pair-modal">
+  <stackable-modal stackable="$ctrl.modals.showGenerateKeyPair"
+    br-lazy-compile="$ctrl.modals.showGenerateKeyPair" br-lazy-id="br-keys-view-generate-key-pair-modal">
     <br-generate-key-pair-modal
-      br-identity="model.identity"></br-generate-key-pair-modal>
+      br-identity="$ctrl.identity"
+      br-on-key-generate="$ctrl.onKeyGenerate(key)"></br-generate-key-pair-modal>
   </stackable-modal>
-  <stackable-modal stackable="model.modals.showAddKey"
-    br-lazy-compile="model.modals.showAddKey" br-lazy-id="br-keys-view-add-key-modal">
+  <stackable-modal stackable="$ctrl.modals.showAddKey"
+    br-lazy-compile="$ctrl.modals.showAddKey" br-lazy-id="br-keys-view-add-key-modal">
     <br-add-key-modal
-      br-identity="model.identity"></br-add-key-modal>
+      br-identity="$ctrl.identity"></br-add-key-modal>
   </stackable-modal>
-  <stackable-modal stackable="model.modals.showEditKey"
-    br-lazy-compile="model.modals.showEditKey" br-lazy-id="br-keys-view-edit-key-modal">
+  <stackable-modal stackable="$ctrl.modals.showEditKey"
+    br-lazy-compile="$ctrl.modals.showEditKey" br-lazy-id="br-keys-view-edit-key-modal">
     <br-edit-key-modal
-      br-identity="model.identity"
-      br-key="model.modals.key"></br-edit-key-modal>
+      br-identity="$ctrl.identity"
+      br-key="$ctrl.modals.key"></br-edit-key-modal>
   </stackable-modal>
 
   <!-- Revoking key alert -->
-  <stackable-modal stackable="model.modals.showRevokeKeyAlert"
-    stackable-closed="model.confirmRevokeKey(err, result)"
-    br-lazy-compile="model.modals.showRevokeKeyAlert" br-lazy-id="br-keys-view-revoke-key-modal">
+  <stackable-modal stackable="$ctrl.modals.showRevokeKeyAlert"
+    stackable-closed="$ctrl.confirmRevokeKey(err, result)"
+    br-lazy-compile="$ctrl.modals.showRevokeKeyAlert" br-lazy-id="br-keys-view-revoke-key-modal">
     <br-alert-modal
       br-modal-header="Warning"
       br-modal-ok="Revoke"

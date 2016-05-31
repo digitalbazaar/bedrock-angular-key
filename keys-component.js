@@ -1,17 +1,24 @@
 /*!
- * Keys Controller.
- *
- * Copyright (c) 2014 Digital Bazaar, Inc. All rights reserved.
- *
- * @author Dave Longley
- * @author David I. Lehn
+ * Copyright (c) 2014-2016 Digital Bazaar, Inc. All rights reserved.
  */
-define([], function() {
+define(['angular'], function(angular) {
 
 'use strict';
 
+function register(module) {
+  module.component('brKeys', {
+    bindings: {
+      identity: '<brIdentity',
+      hideGenerate: '<?brHideGenerate'
+    },
+    controller: Ctrl,
+    templateUrl: requirejs.toUrl(
+      'bedrock-angular-key/keys-component.html')
+  });
+}
+
 /* @ngInject */
-function factory($scope, $routeParams, brAlertService, brKeyService,
+function Ctrl($scope, $routeParams, brAlertService, brKeyService,
   brSessionService, config) {
   var self = this;
   self.hideGenerate = !!$scope.hideGenerate;
@@ -26,6 +33,12 @@ function factory($scope, $routeParams, brAlertService, brKeyService,
   if($routeParams.service === 'add-key') {
     self.modals.showAddKey = true;
   }
+
+  self.$onChanges = function(changes) {
+    if(changes.identity) {
+      init(changes.identity.currentValue);
+    }
+  };
 
   self.editKey = function(key) {
     self.modals.showEditKey = true;
@@ -59,7 +72,11 @@ function factory($scope, $routeParams, brAlertService, brKeyService,
     self.modals.key = null;
   };
 
-  self.init = function(identity) {
+  self.onKeyGenerate = function(key) {
+    return self.service.collection.add(key);
+  };
+
+  function init(identity) {
     self.operations = {
       add: false,
       remove: false
@@ -84,26 +101,9 @@ function factory($scope, $routeParams, brAlertService, brKeyService,
     }).then(function() {
       $scope.$apply();
     });
-  };
-
-  $scope.$watch('identity', function(value) {
-    // FIXME: clear state if no value?
-    if(value) {
-      self.init(value);
-    }
-    self.identity = value;
-  });
+  }
 }
 
-// TODO: allow users to modify specific resources
-function hasPermission(identity, permission) {
-  // if sysPermissionTable is an object, it is a map of specific resources
-  // to which this permission applies.
-  // boolean value indicates that the user has unrestricted permissions
-  return (permission in identity.sysPermissionTable &&
-    identity.sysPermissionTable[permission] === true);
-}
-
-return {brKeysController: factory};
+return register;
 
 });

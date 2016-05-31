@@ -23,14 +23,13 @@ function register(module) {
     },
     controller: Ctrl,
     templateUrl: requirejs.toUrl(
-      'bedrock-angular-key/generate-key-pair-modal-component.html'),
+      'bedrock-angular-key/generate-key-pair-modal-component.html')
   });
 }
 
 /* @ngInject */
 function Ctrl($scope, brAlertService, config) {
   var self = this;
-
   self.mode = 'generate';
   self.loading = false;
   self.success = false;
@@ -87,8 +86,9 @@ function Ctrl($scope, brAlertService, config) {
     }).then(function(key) {
       self.loading = false;
       if(self.success) {
-        self.stackable.close(null, key || self.key);
+        return self.stackable.close(null, key || self.key);
       }
+    }).then(function() {
       $scope.$apply();
     });
   };
