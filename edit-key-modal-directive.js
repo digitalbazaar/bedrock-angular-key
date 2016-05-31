@@ -12,7 +12,7 @@ define(['angular'], function(angular) {
 /* @ngInject */
 function factory(brAlertService, brKeyService, config) {
   return {
-    restrict: 'A',
+    restrict: 'AE',
     scope: {
       identity: '=brIdentity',
       sourceKey: '=brKey'
