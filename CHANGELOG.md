@@ -1,5 +1,10 @@
 # bedrock-angular-key ChangeLog
 
+## 3.0.1 - 2016-06-02
+
+### Fixed
+- Update brKeys to use new key generator API.
+
 ## 3.0.0 - 2016-05-28
 
 ### Changed
