@@ -33,6 +33,10 @@ function Ctrl($scope, $routeParams, brAlertService, brKeyService,
   if($routeParams.service === 'add-key') {
     self.modals.showAddKey = true;
   }
+  
+  self.$onInit = function() {
+    init(self.identity);
+  };
 
   self.$onChanges = function(changes) {
     if(changes.identity) {

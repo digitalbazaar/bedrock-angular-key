@@ -1,5 +1,8 @@
 # bedrock-angular-key ChangeLog
 
+### Fixed
+- Call init in keys controller.
+
 ## 3.0.1 - 2016-06-02
 
 ### Fixed
