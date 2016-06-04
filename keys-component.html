@@ -2,21 +2,25 @@
   <br-headline br-title="Keys" br-loading="$ctrl.state.loading">
     <ul class="stackable-menu dropdown-menu">
       <li ng-show="$ctrl.isOwner && !$ctrl.hideGenerate">
-        <a class="stackable-cancel"
-          ng-click="$ctrl.modals.showGenerateKeyPair=true"><i class="fa fa-plus"></i> Generate Key Pair</a>
+        <a class="stackable-cancel" ng-click="$ctrl.modals.showGenerateKeyPair=true">
+          <i class="fa fa-plus"></i> Generate Key Pair
+        </a>
       </li>
       <li ng-show="$ctrl.operations.add">
-        <a class="stackable-cancel"
-          ng-click="$ctrl.modals.showAddKey=true"><i class="fa fa-plus"></i> Add Key</a>
+        <a class="stackable-cancel" ng-click="$ctrl.modals.showAddKey=true">
+          <i class="fa fa-plus"></i> Add Key
+        </a>
       </li>
       <li>
-        <a class="stackable-cancel"
-          ng-click="$ctrl.showRevokedKeys=!$ctrl.showRevokedKeys"><i
-          ng-show="$ctrl.showRevokedKeys" class="fa fa-check-square-o"></i><i ng-hide="$ctrl.showRevokedKeys" class="fa fa-square-o"></i> Show Revoked Keys</a>
+        <a class="stackable-cancel" ng-click="$ctrl.showRevokedKeys=!$ctrl.showRevokedKeys">
+          <i class="fa" ng-class="{'fa-check-square-o': $ctrl.showRevokedKeys, 'fa-square-o': !$ctrl.showRevokedKeys}">
+          </i> Show Revoked Keys
+        </a>
       </li>
     </ul>
   </br-headline>
-  <table class="table table-condensed" ng-show="$ctrl.state.loading || $ctrl.keys.length > 0">
+  <table class="table table-condensed"
+    ng-show="$ctrl.state.loading || $ctrl.activeKeys || ($ctrl.keys.length > 0 && $ctrl.showRevokedKeys)">
     <thead>
       <tr>
         <th>Name</th>
@@ -60,8 +64,8 @@
       </tr>
     </tbody>
   </table>
-  <div ng-show="!$ctrl.state.loading && $ctrl.keys.length == 0">
-    <p class="text-center">There are no keys associated with this identity.
+  <div ng-show="!$ctrl.state.loading && !$ctrl.activeKeys">
+    <p class="text-center">There are no active keys associated with this identity.
     Access keys can be added by using an external website or application
     or one can be generated that this site controls.</p>
   </div>

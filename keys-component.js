@@ -9,7 +9,8 @@ function register(module) {
   module.component('brKeys', {
     bindings: {
       identity: '<brIdentity',
-      hideGenerate: '<?brHideGenerate'
+      hideGenerate: '<?brHideGenerate',
+      showRevoked: '<?brShowRevoked'
     },
     controller: Ctrl,
     templateUrl: requirejs.toUrl(
@@ -21,7 +22,9 @@ function register(module) {
 function Ctrl($scope, $routeParams, brAlertService, brKeyService,
   brSessionService, config) {
   var self = this;
-  self.hideGenerate = !!$scope.hideGenerate;
+  self.activeKeys = false;
+  self.hideGenerate = !!self.hideGenerate;
+  self.showRevoke = !!self.showRevoked;
   self.modals = {
     showGenerateKeyPair: false,
     showAddKey: false,
@@ -33,7 +36,7 @@ function Ctrl($scope, $routeParams, brAlertService, brKeyService,
   if($routeParams.service === 'add-key') {
     self.modals.showAddKey = true;
   }
-  
+
   self.$onInit = function() {
     init(self.identity);
   };
@@ -69,16 +72,35 @@ function Ctrl($scope, $routeParams, brAlertService, brKeyService,
     self.modals.showRevokeKeyAlert = true;
     self.modals.key = key;
   };
+
   self.confirmRevokeKey = function(err, result) {
     if(!err && result === 'ok') {
-      self.service.revoke(self.modals.key.id);
+      self.service.revoke(self.modals.key.id)
+        .catch(function(err) {
+          brAlertService.add('error', err, {scope: $scope});
+        })
+        .then(function() {
+          setActiveKeys();
+          $scope.$apply();
+        });
     }
     self.modals.key = null;
   };
 
   self.onKeyGenerate = function(key) {
+    self.activeKeys = true;
     return self.service.collection.add(key);
   };
+
+  function setActiveKeys() {
+    self.activeKeys = false;
+    for(var i = 0; i < self.keys.length; i++) {
+      if(self.keys[i].sysStatus === 'active') {
+        self.activeKeys = true;
+        break;
+      }
+    }
+  }
 
   function init(identity) {
     self.operations = {
@@ -87,22 +109,22 @@ function Ctrl($scope, $routeParams, brAlertService, brKeyService,
     };
     var sessionPromise = brSessionService.get().then(function(session) {
       self.isOwner = (session.identity &&
-        (identity.id == session.identity.id));
+        (identity.id === session.identity.id));
       if(self.isOwner || hasPermission(session.identity, 'PUBLIC_KEY_CREATE')) {
         self.operations.add = true;
       }
     });
-    var keysPromise = brKeyService.getService({
-      identity: identity
-    }).then(function(service) {
-      self.service = service;
-      self.keys = service.keys;
-      self.state = service.state;
-      return self.service.collection.getAll();
-    });
+    var keysPromise = brKeyService.getService({identity: identity})
+      .then(function(service) {
+        self.service = service;
+        self.keys = service.keys;
+        self.state = service.state;
+        return self.service.collection.getAll();
+      });
     Promise.all([sessionPromise, keysPromise]).catch(function(err) {
       brAlertService.add('error', err, {scope: $scope});
     }).then(function() {
+      setActiveKeys();
       $scope.$apply();
     });
   }
