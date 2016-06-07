@@ -110,7 +110,9 @@ function Ctrl($scope, $routeParams, brAlertService, brKeyService,
     var sessionPromise = brSessionService.get().then(function(session) {
       self.isOwner = (session.identity &&
         (identity.id === session.identity.id));
-      if(self.isOwner || hasPermission(session.identity, 'PUBLIC_KEY_CREATE')) {
+      if(self.isOwner ||
+        (session.identity &&
+        hasPermission(session.identity, identity.id, 'PUBLIC_KEY_CREATE'))) {
         self.operations.add = true;
       }
     });
@@ -127,6 +129,21 @@ function Ctrl($scope, $routeParams, brAlertService, brKeyService,
       setActiveKeys();
       $scope.$apply();
     });
+  }
+
+  function hasPermission(identity, resource, permission) {
+    // if sysPermissionTable is an object, it is a map of specific resources
+    // to which this permission applies.
+    // boolean value indicates that the user has unrestricted permissions
+    if(permission in identity.sysPermissionTable &&
+      identity.sysPermissionTable[permission] === true) {
+      return true;
+    }
+    if(permission in identity.sysPermissionTable &&
+      resource in identity.sysPermissionTable[permission]) {
+      return identity.sysPermissionTable[permission][resource];
+    }
+    return false;
   }
 }
 
