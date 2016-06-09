@@ -1,5 +1,10 @@
 # bedrock-angular-key ChangeLog
 
+## 3.1.0 - 2016-06-09
+
+## Added
+- Add a public key viewer component.
+
 ### Fixed
 - Call init in keys controller.
 
