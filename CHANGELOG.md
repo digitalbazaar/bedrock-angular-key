@@ -1,5 +1,8 @@
 # bedrock-angular-key ChangeLog
 
+### Fixed
+- Fix hasPermission for minimal public identities.
+
 ## 3.1.0 - 2016-06-09
 
 ## Added

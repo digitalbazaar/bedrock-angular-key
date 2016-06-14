@@ -132,16 +132,18 @@ function Ctrl($scope, $routeParams, brAlertService, brKeyService,
   }
 
   function hasPermission(identity, resource, permission) {
-    // if sysPermissionTable is an object, it is a map of specific resources
-    // to which this permission applies.
-    // boolean value indicates that the user has unrestricted permissions
-    if(permission in identity.sysPermissionTable &&
-      identity.sysPermissionTable[permission] === true) {
-      return true;
-    }
-    if(permission in identity.sysPermissionTable &&
-      resource in identity.sysPermissionTable[permission]) {
-      return identity.sysPermissionTable[permission][resource];
+    if('sysPermissionTable' in identity) {
+      // if sysPermissionTable is an object, it is a map of specific resources
+      // to which this permission applies.
+      // boolean value indicates that the user has unrestricted permissions
+      if(permission in identity.sysPermissionTable &&
+        identity.sysPermissionTable[permission] === true) {
+        return true;
+      }
+      if(permission in identity.sysPermissionTable &&
+        resource in identity.sysPermissionTable[permission]) {
+        return identity.sysPermissionTable[permission][resource];
+      }
     }
     return false;
   }
