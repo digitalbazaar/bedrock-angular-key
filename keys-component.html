@@ -78,7 +78,9 @@
   <stackable-modal stackable="$ctrl.modals.showAddKey"
     br-lazy-compile="$ctrl.modals.showAddKey" br-lazy-id="br-keys-view-add-key-modal">
     <br-add-key-modal
-      br-identity="$ctrl.identity"></br-add-key-modal>
+      br-identity="$ctrl.identity"
+      br-on-add="$ctrl.addKey(key)">
+    </br-add-key-modal>
   </stackable-modal>
   <stackable-modal stackable="$ctrl.modals.showEditKey"
     br-lazy-compile="$ctrl.modals.showEditKey" br-lazy-id="br-keys-view-edit-key-modal">

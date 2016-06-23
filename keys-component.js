@@ -47,6 +47,11 @@ function Ctrl($scope, $routeParams, brAlertService, brKeyService,
     }
   };
 
+  self.addKey = function(key) {
+    self.activeKeys = true;
+    return self.service.collection.add(key);
+  };
+
   self.editKey = function(key) {
     self.modals.showEditKey = true;
     self.modals.key = key;

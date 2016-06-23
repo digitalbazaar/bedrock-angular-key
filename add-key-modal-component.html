@@ -1,0 +1,28 @@
+<br-modal br-title="Add Key">
+  <br-modal-body>
+    <div ng-hide="$ctrl.success">
+      <br-key-form ng-model="$ctrl"></br-key-form>
+    </div>
+    <div ng-show="$ctrl.success">
+      <p>
+        The key was added successfully. Below is the key ID that you may need
+        to configure external tools or websites.
+      </p>
+      <pre>{{$ctrl.key.id}}</pre>
+    </div>
+  </br-modal-body>
+  <br-modal-footer>
+    <span ng-show="$ctrl.loading">
+      <i class="fa fa-refresh fa-spin text-muted"></i>
+    </span>
+    <button type="button" class="btn btn-primary"
+      ng-hide="$ctrl.success"
+      ng-disabled="$ctrl.loading"
+      ng-click="$ctrl.addKey()"><i class="fa fa-check"></i> Save</button>
+    <button type="button" class="btn btn-primary"
+      ng-show="$ctrl.success"
+      ng-disabled="$ctrl.loading"
+      ng-click="$ctrl.done()"><i class="fa fa-check"></i> Done</button>
+    <button type="button" class="btn btn-default stackable-cancel" ng-disabled="$ctrl.loading">Cancel</button>
+  </br-modal-footer>
+</br-modal>

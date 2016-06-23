@@ -14,7 +14,7 @@ function register(module) {
     bindings: {
       model: '=ngModel'
     },
-    templateUrl: requirejs.toUrl('bedrock-angular-key/key-form-component.html'),
+    templateUrl: requirejs.toUrl('bedrock-angular-key/key-form-component.html')
   });
 }
 
