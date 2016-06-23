@@ -125,7 +125,7 @@ function factory(
           service.collection._syncUpdate = true;
           service.collection.getAll({force: true})
             .catch(angular.noop)
-            .then(function( ) {
+            .then(function() {
               service.collection._syncUpdate = false;
             });
         });

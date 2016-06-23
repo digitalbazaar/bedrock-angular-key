@@ -42,7 +42,7 @@ function Ctrl($scope, $routeParams, brAlertService, brKeyService,
   };
 
   self.$onChanges = function(changes) {
-    if(changes.identity) {
+    if(changes.identity && !changes.identity.isFirstChange()) {
       init(changes.identity.currentValue);
     }
   };
