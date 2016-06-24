@@ -1,5 +1,11 @@
 # bedrock-angular-key ChangeLog
 
+## 3.1.2 - 2016-06-24
+
+### Changed
+- Convert add-key modal to a component.
+- Prevent redundant calls to init().
+
 ## 3.1.1 - 2016-06-14
 
 ### Fixed
