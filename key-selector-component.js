@@ -45,6 +45,11 @@ function Ctrl() {
     }
   };
 
+  self.keyFilter = function(key) {
+    var selected = self.selected || {};
+    return key.sysStatus === 'active' || key.id === selected.id;
+  };
+
   self.onKeyGenerate = function(key) {
     return Promise.resolve(onAdd({key: key}));
   };

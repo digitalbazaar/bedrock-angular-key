@@ -8,18 +8,28 @@
   br-allow-select-none="true">
   <br-selector-selected>
     <div ng-if="$ctrl.selected">
-      <strong>{{$ctrl.selected.label}}</strong>
-      <br/>
+      <h4>{{$ctrl.selected.label}}</h4>
       <small>{{$ctrl.selected.id}}</small>
+      <div ng-if="$ctrl.selected.sysStatus == 'disabled'" class="alert alert-danger">
+        This key is disabled and <strong>must</strong> be replaced.
+      </div>
     </div>
   </br-selector-selected>
   <br-selector-choices>
     <ul class="list-unstyled">
-      <li class="br-item-hover well" ng-repeat="key in $ctrl.keys"
+      <li class="br-item-hover well"
+        ng-repeat="key in $ctrl.keys | filter:$ctrl.keyFilter"
         ng-click="$ctrl.selected=key; $ctrl.showChoices=false">
-        <strong>{{key.label}}</strong>
-        <br/>
+          <h4>
+            {{key.label}}
+            <span ng-if="key.id == $ctrl.selected.id" class="pull-right label label-primary" >
+              Selected
+            </span>
+          </h4>
         <small>{{key.id}}</small>
+        <div ng-if="key.sysStatus == 'disabled'" class="alert alert-danger">
+          This key is disabled and <strong>must</strong> be replaced.
+        </div>
       </li>
     </ul>
   </br-selector-choices>
