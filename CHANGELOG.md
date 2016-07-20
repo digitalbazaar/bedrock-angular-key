@@ -1,5 +1,10 @@
 # bedrock-angular-key ChangeLog
 
+## 3.1.3 - 2016-07-20
+
+### Changed
+- Display only active keys in the key selector.
+
 ## 3.1.2 - 2016-06-24
 
 ### Changed
