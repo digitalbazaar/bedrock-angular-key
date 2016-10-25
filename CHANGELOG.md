@@ -1,5 +1,10 @@
 # bedrock-angular-key ChangeLog
 
+## 3.1.4 - 2016-10-25
+
+### Changed
+- Add protractor pages.
+
 ## 3.1.3 - 2016-07-20
 
 ### Changed
