@@ -1,7 +1,7 @@
 /*!
  * Copyright (c) 2014-2016 Digital Bazaar, Inc. All rights reserved.
  */
-define(['angular'], function(angular) {
+define([], function() {
 
 'use strict';
 
@@ -20,7 +20,7 @@ function register(module) {
 
 /* @ngInject */
 function Ctrl($scope, $routeParams, brAlertService, brKeyService,
-  brSessionService, config) {
+  brSessionService) {
   var self = this;
   self.activeKeys = false;
   self.hideGenerate = !!self.hideGenerate;

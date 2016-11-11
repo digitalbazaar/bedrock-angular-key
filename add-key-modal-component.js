@@ -26,7 +26,7 @@ function register(module) {
 }
 
 function Ctrl($scope, brAlertService, config) {
-  self = this;
+  var self = this;
   self.loading = false;
   self.success = false;
   self.key = {

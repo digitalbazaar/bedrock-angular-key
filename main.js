@@ -29,9 +29,9 @@ define([
 
 var module = angular.module('bedrock.key', []);
 
-/*Array.prototype.slice.call(arguments, 1).forEach(function(register) {
-  register(module);
-});*/
+// Array.prototype.slice.call(arguments, 1).forEach(function(register) {
+//   register(module);
+// });
 addKeyModalComponent(module);
 keysComponent(module);
 keySelectorComponent(module);

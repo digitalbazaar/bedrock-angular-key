@@ -50,7 +50,7 @@ function Ctrl($scope, brAlertService, config) {
       forge.pki.rsa.generateKeyPair({
         bits: bits,
         workers: -1,
-        //workLoad: 100,
+        // workLoad: 100,
         workerScript: '/bower-components/forge/js/prime.worker.js'
       }, function(err, keypair) {
         if(err) {
