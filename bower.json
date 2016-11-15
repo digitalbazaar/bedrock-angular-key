@@ -12,6 +12,8 @@
     "bedrock-angular-modal": "^3.0.0",
     "bedrock-angular-resource": "^2.0.0",
     "bedrock-angular-selector": "^3.1.0",
+    "bedrock-angular-session": "^3.0.2",
+    "bedrock-angular-ui": "^2.0.2",
     "forge": "~0.6.34"
   }
 }

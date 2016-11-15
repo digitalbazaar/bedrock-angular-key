@@ -27,7 +27,9 @@ define([
 
 'use strict';
 
-var module = angular.module('bedrock.key', []);
+var module = angular.module('bedrock.key', [
+  'bedrock.alert', 'bedrock.modal', 'bedrock.resource', 'bedrock.session',
+  'bedrock.ui']);
 
 // Array.prototype.slice.call(arguments, 1).forEach(function(register) {
 //   register(module);
