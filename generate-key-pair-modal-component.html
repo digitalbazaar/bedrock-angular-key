@@ -14,7 +14,7 @@
         completed, you will have the opportunity to enter some details about
         the key, such as a label, before saving it.
       </p>
-      <button type="button" class="btn btn-primary"
+      <button type="button" class="btn btn-primary btn-block"
         ng-disabled="$ctrl.loading"
         ng-click="$ctrl.generateKeyPair()">
         <i class="fa fa-gear" ng-class="{'fa-spin': $ctrl.loading}"></i>
@@ -36,17 +36,16 @@
     </div>
   </br-modal-body>
   <br-modal-footer>
-    <span ng-show="$ctrl.success">
-      <button type="button" class="btn btn-primary"
-        ng-disabled="$ctrl.loading"
-        ng-click="$ctrl.onSave()"><i class="fa"
-          ng-class="{
-            'fa-check': !$ctrl.loading,
-            'fa-refresh fa-spin': $ctrl.loading
-          }"></i> Save
-      </button>
-    </span>
     <button type="button" class="btn btn-default stackable-cancel"
-      ng-disabled="$ctrl.loading">Cancel</button>
+      ng-disabled="$ctrl.loading">Cancel
+    </button>
+    <button ng-show="$ctrl.success" type="button" class="btn btn-primary"
+      ng-disabled="$ctrl.loading"
+      ng-click="$ctrl.onSave()"><i class="fa"
+      ng-class="{
+        'fa-check': !$ctrl.loading,
+        'fa-refresh fa-spin': $ctrl.loading
+      }"></i> Save
+    </button>
   </br-modal-footer>
 </br-modal>
