@@ -1,5 +1,7 @@
 # bedrock-angular-key ChangeLog
 
+## 3.1.5 - 2017-05-11
+
 ### Fixed
 - Initialize component via `$onInit`.
 
