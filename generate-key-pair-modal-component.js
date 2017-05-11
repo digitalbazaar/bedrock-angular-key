@@ -1,7 +1,7 @@
 /*!
  * Generate Key Pair Modal.
  *
- * Copyright (c) 2014-2016 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2014-2017 Digital Bazaar, Inc. All rights reserved.
  *
  * @author Dave Longley
  */
@@ -30,13 +30,16 @@ function register(module) {
 /* @ngInject */
 function Ctrl($scope, brAlertService, config) {
   var self = this;
-  self.mode = 'generate';
-  self.loading = false;
-  self.success = false;
-  self.key = {
-    '@context': config.data.contextUrls.identity,
-    owner: self.identity.id,
-    label: 'Signing Key 1'
+
+  self.$onInit = function() {
+    self.mode = 'generate';
+    self.loading = false;
+    self.success = false;
+    self.key = {
+      '@context': config.data.contextUrls.identity,
+      owner: self.identity.id,
+      label: 'Signing Key 1'
+    };
   };
 
   // prepare forge

@@ -22,22 +22,23 @@ function register(module) {
 function Ctrl($scope, $routeParams, brAlertService, brKeyService,
   brSessionService) {
   var self = this;
-  self.activeKeys = false;
-  self.hideGenerate = !!self.hideGenerate;
-  self.showRevoke = !!self.showRevoked;
-  self.modals = {
-    showGenerateKeyPair: false,
-    showAddKey: false,
-    showEditKey: false,
-    showRevokeKeyAlert: false,
-    key: null
-  };
-
-  if($routeParams.service === 'add-key') {
-    self.modals.showAddKey = true;
-  }
 
   self.$onInit = function() {
+    self.activeKeys = false;
+    self.hideGenerate = !!self.hideGenerate;
+    self.showRevoke = !!self.showRevoked;
+    self.modals = {
+      showGenerateKeyPair: false,
+      showAddKey: false,
+      showEditKey: false,
+      showRevokeKeyAlert: false,
+      key: null
+    };
+
+    if($routeParams.service === 'add-key') {
+      self.modals.showAddKey = true;
+    }
+
     init(self.identity);
   };
 
