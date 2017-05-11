@@ -37,6 +37,7 @@ describe('bedrock-angular-key', () => {
     describe('generate-key-pair-modal', () => {
       beforeEach(() => {
         key.actionMenuButton().click();
+        browser.wait(EC.visibilityOf($('.stackable-menu')), 3000);
         element(by.linkText('Generate Key Pair')).click();
         browser.wait(EC.visibilityOf($('br-generate-key-pair-modal')), 3000);
       });
