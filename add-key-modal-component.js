@@ -1,7 +1,7 @@
 /*!
  * Add Key Modal.
  *
- * Copyright (c) 2012-2016 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2012-2017 Digital Bazaar, Inc. All rights reserved.
  *
  * @author Dave Longley
  * @author David I. Lehn
@@ -27,17 +27,20 @@ function register(module) {
 
 function Ctrl($scope, brAlertService, config) {
   var self = this;
-  self.loading = false;
-  self.success = false;
-  self.key = {
-    '@context': config.data.contextUrls.identity,
-    label: 'Access Key 1',
-    owner: self.identity.id,
-    publicKeyPem: ''
-  };
 
-  // flag if PEM UI is needed
-  self.needPem = !self.key.publicKeyPem;
+  self.$onInit = function() {
+    self.loading = false;
+    self.success = false;
+    self.key = {
+      '@context': config.data.contextUrls.identity,
+      label: 'Access Key 1',
+      owner: self.identity.id,
+      publicKeyPem: ''
+    };
+
+    // flag if PEM UI is needed
+    self.needPem = !self.key.publicKeyPem;
+  };
 
   self.addKey = function() {
     brAlertService.clearFeedback();
