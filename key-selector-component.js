@@ -1,29 +1,24 @@
 /*!
  * Key Selector component.
  *
- * Copyright (c) 2014-2016 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2014-2017 Digital Bazaar, Inc. All rights reserved.
  *
  * @author Dave Longley
  */
-define(['angular'], function(angular) {
+import angular from 'angular';
 
-'use strict';
-
-function register(module) {
-  module.component('brKeySelector', {
-    bindings: {
-      identity: '<brIdentity',
-      keys: '<brKeys',
-      selected: '<?brSelected',
-      onSelect: '&brOnSelect',
-      onAdd: '&?brOnAdd',
-      fixed: '<?brFixed'
-    },
-    controller: Ctrl,
-    templateUrl: requirejs.toUrl(
-      'bedrock-angular-key/key-selector-component.html')
-  });
-}
+export default {
+  bindings: {
+    identity: '<brIdentity',
+    keys: '<brKeys',
+    selected: '<?brSelected',
+    onSelect: '&brOnSelect',
+    onAdd: '&?brOnAdd',
+    fixed: '<?brFixed'
+  },
+  controller: Ctrl,
+  templateUrl: 'bedrock-angular-key/key-selector-component.html'
+};
 
 /* @ngInject */
 function Ctrl() {
@@ -54,7 +49,3 @@ function Ctrl() {
     return Promise.resolve(onAdd({key: key}));
   };
 }
-
-return register;
-
-});

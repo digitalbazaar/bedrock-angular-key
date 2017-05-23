@@ -1,26 +1,19 @@
 /*!
- * Copyright (c) 2014-2016 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2014-2017 Digital Bazaar, Inc. All rights reserved.
  */
-define([], function() {
-
-'use strict';
-
-function register(module) {
-  module.component('brKeys', {
-    bindings: {
-      identity: '<brIdentity',
-      hideGenerate: '<?brHideGenerate',
-      showRevoked: '<?brShowRevoked'
-    },
-    controller: Ctrl,
-    templateUrl: requirejs.toUrl(
-      'bedrock-angular-key/keys-component.html')
-  });
-}
+export default {
+  bindings: {
+    identity: '<brIdentity',
+    hideGenerate: '<?brHideGenerate',
+    showRevoked: '<?brShowRevoked'
+  },
+  controller: Ctrl,
+  templateUrl: 'bedrock-angular-key/keys-component.html'
+};
 
 /* @ngInject */
-function Ctrl($scope, $routeParams, brAlertService, brKeyService,
-  brSessionService) {
+function Ctrl(
+  $scope, $routeParams, brAlertService, brKeyService, brSessionService) {
   var self = this;
 
   self.$onInit = function() {
@@ -116,8 +109,7 @@ function Ctrl($scope, $routeParams, brAlertService, brKeyService,
     var sessionPromise = brSessionService.get().then(function(session) {
       self.isOwner = (session.identity &&
         (identity.id === session.identity.id));
-      if(self.isOwner ||
-        (session.identity &&
+      if(self.isOwner || (session.identity &&
         hasPermission(session.identity, identity.id, 'PUBLIC_KEY_CREATE'))) {
         self.operations.add = true;
       }
@@ -154,7 +146,3 @@ function Ctrl($scope, $routeParams, brAlertService, brKeyService,
     return false;
   }
 }
-
-return register;
-
-});

@@ -1,16 +1,14 @@
 /*!
  * Key Service.
  *
- * Copyright (c) 2012-2016 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2012-2017 Digital Bazaar, Inc. All rights reserved.
  *
  * @author Dave Longley
  */
-define(['angular'], function(angular) {
-
-'use strict';
+import angular from 'angular';
 
 /* @ngInject */
-function factory(
+export default function factory(
   $rootScope, $httpParamSerializer, brModelService,
   brRefreshService, brResourceService, config) {
   var service = {};
@@ -134,7 +132,3 @@ function factory(
     };
   }
 }
-
-return {brKeyService: factory};
-
-});

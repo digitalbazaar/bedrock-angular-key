@@ -1,18 +1,15 @@
 /*!
  * Key Details.
  *
- * Copyright (c) 2012-2014 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2012-2017 Digital Bazaar, Inc. All rights reserved.
  *
  * @author Manu Sporny
  * @author David I. Lehn
  * @author Dave Longley
  */
-define([], function() {
-
-'use strict';
-
 /* @ngInject */
-function factory($scope, brAlertService, brKeyService, brRefreshService) {
+export default function factory(
+  $scope, brAlertService, brKeyService, brRefreshService) {
   var self = this;
 
   var _keys = brKeyService.get();
@@ -36,7 +33,3 @@ function factory($scope, brAlertService, brKeyService, brRefreshService) {
     });
   })();
 }
-
-return {brKeyController: factory};
-
-});

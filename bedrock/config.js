@@ -1,7 +1,7 @@
 /*
  * Bedrock Configuration.
  *
- * Copyright (c) 2015-2016 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2015-2017 Digital Bazaar, Inc. All rights reserved.
  */
 module.exports = function(bedrock) {
   // FIXME: overrides config set elsewhere

@@ -6,24 +6,17 @@
  * @author Dave Longley
  * @author David I. Lehn
  */
-define([], function() {
-
-'use strict';
-
-function register(module) {
-  module.component('brAddKeyModal', {
-    bindings: {
-      identity: '<brIdentity',
-      onAdd: '&brOnAdd'
-    },
-    controller: Ctrl,
-    require: {
-      'stackable': '^'
-    },
-    templateUrl: requirejs.toUrl(
-      'bedrock-angular-key/add-key-modal-component.html')
-  });
-}
+export default {
+  bindings: {
+    identity: '<brIdentity',
+    onAdd: '&brOnAdd'
+  },
+  controller: Ctrl,
+  require: {
+    'stackable': '^'
+  },
+  templateUrl: 'bedrock-angular-key/add-key-modal-component.html'
+};
 
 function Ctrl($scope, brAlertService, config) {
   var self = this;
@@ -61,7 +54,3 @@ function Ctrl($scope, brAlertService, config) {
     self.stackable.close(null, self.key);
   };
 }
-
-return register;
-
-});

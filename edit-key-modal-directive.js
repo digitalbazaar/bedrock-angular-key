@@ -1,16 +1,14 @@
 /*!
  * Edit Key Modal.
  *
- * Copyright (c) 2012-2015 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2012-2017 Digital Bazaar, Inc. All rights reserved.
  *
  * @author Dave Longley
  */
-define(['angular'], function(angular) {
-
-'use strict';
+import angular from 'angular';
 
 /* @ngInject */
-function factory(brAlertService, brKeyService, config) {
+export default function factory(brAlertService, brKeyService, config) {
   return {
     restrict: 'AE',
     scope: {
@@ -18,7 +16,7 @@ function factory(brAlertService, brKeyService, config) {
       sourceKey: '=brKey'
     },
     require: '^stackable',
-    templateUrl: requirejs.toUrl('bedrock-angular-key/edit-key-modal.html'),
+    templateUrl: 'bedrock-angular-key/edit-key-modal.html',
     link: Link
   };
 
@@ -57,7 +55,3 @@ function factory(brAlertService, brKeyService, config) {
     };
   }
 }
-
-return {brEditKeyModal: factory};
-
-});

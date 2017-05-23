@@ -1,12 +1,8 @@
 /*!
- * Copyright (c) 2016 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2016-2017 Digital Bazaar, Inc. All rights reserved.
  */
-define([
-  'angular',
-  './test-harness-component'
-], function(angular) {
-
-'use strict';
+import angular from 'angular';
+import TestHarnessComponent from './test-harness-component.js';
 
 var keyBasePath = window.data['bedrock-angular-key'].basePath;
 
@@ -15,9 +11,7 @@ var module = angular.module('bedrock.key-test', [
   'bedrock.session'
 ]);
 
-Array.prototype.slice.call(arguments, 1).forEach(function(register) {
-  register(module);
-});
+module.component('brTestHarness', TestHarnessComponent);
 
 /* @ngInject */
 module.config(function($routeProvider) {
@@ -33,8 +27,6 @@ module.config(function($routeProvider) {
     })
     .when(keyBasePath + '/:keyId', {
       title: 'Key',
-      templateUrl: requirejs.toUrl('bedrock-angular-key/key.html')
+      templateUrl: 'bedrock-angular-key/key.html'
     });
-});
-
 });

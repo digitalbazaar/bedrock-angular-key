@@ -5,27 +5,22 @@
  *
  * @author Dave Longley
  */
-define(['forge/js/pki'], function(pki) {
+import pki from 'forge/js/pki';
 
-'use strict';
-
-function register(module) {
-  module.component('brGenerateKeyPairModal', {
-    require: {
-      stackable: '^'
-    },
-    bindings: {
-      identity: '<brIdentity',
-      onKeyGenerate: '&brOnKeyGenerate'
-    },
-    transclude: {
-      help: '?brGenerateKeyPairModalHelp'
-    },
-    controller: Ctrl,
-    templateUrl: requirejs.toUrl(
-      'bedrock-angular-key/generate-key-pair-modal-component.html')
-  });
-}
+export default {
+  require: {
+    stackable: '^'
+  },
+  bindings: {
+    identity: '<brIdentity',
+    onKeyGenerate: '&brOnKeyGenerate'
+  },
+  transclude: {
+    help: '?brGenerateKeyPairModalHelp'
+  },
+  controller: Ctrl,
+  templateUrl: 'bedrock-angular-key/generate-key-pair-modal-component.html'
+};
 
 /* @ngInject */
 function Ctrl($scope, brAlertService, config) {
@@ -96,7 +91,3 @@ function Ctrl($scope, brAlertService, config) {
     });
   };
 }
-
-return register;
-
-});

@@ -1,0 +1,27 @@
+{
+  "name": "bedrock-angular-key",
+  "version": "3.1.5",
+  "description": "bedrock-angular-key",
+  "main": "index.js",
+  "dependencies": {
+    "angular": "~1.6.4",
+    "bedrock-angular-alert": "^3.0.0",
+    "bedrock-angular-modal": "^4.0.0",
+    "bedrock-angular-resource": "^3.0.0",
+    "bedrock-angular-selector": "^4.0.0",
+    "bedrock-angular-session": "^4.0.0",
+    "bedrock-angular-ui": "^3.0.0",
+    "forge": "~0.6.34"
+  },
+  "bedrock": {
+    "browserDependencies": "all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/digitalbazaar/bedrock-angular-key.git"
+  },
+  "bugs": {
+    "url": "https://github.com/digitalbazaar/bedrock-angular-key/issues"
+  },
+  "homepage": "https://github.com/digitalbazaar/bedrock-angular-key#readme"
+}
