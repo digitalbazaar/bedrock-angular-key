@@ -5,7 +5,7 @@
  *
  * @author Dave Longley
  */
-import pki from 'forge/js/pki';
+import pki from 'node-forge/js/pki.js';
 
 export default {
   require: {

@@ -6,15 +6,15 @@ var config = bedrock.config;
 var path = require('path');
 
 var dir = path.join(__dirname);
-config.requirejs.bower.packages.push({
+config.views.system.packages.push({
   path: path.join(dir, 'components'),
-  manifest: path.join(dir, 'bower.json')
+  manifest: path.join(dir, 'package.json')
 });
 
 var parentDir = path.join(__dirname, '..');
-config.requirejs.bower.packages.push({
+config.views.system.packages.push({
   path: path.join(parentDir),
-  manifest: path.join(parentDir, 'bower.json')
+  manifest: path.join(parentDir, 'package.json')
 });
 
 // mongodb config

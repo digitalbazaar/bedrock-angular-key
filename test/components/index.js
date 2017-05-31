@@ -2,6 +2,7 @@
  * Copyright (c) 2016-2017 Digital Bazaar, Inc. All rights reserved.
  */
 import angular from 'angular';
+import * as bedrock from 'bedrock-angular';
 import TestHarnessComponent from './test-harness-component.js';
 
 var keyBasePath = window.data['bedrock-angular-key'].basePath;
@@ -10,6 +11,8 @@ var module = angular.module('bedrock.key-test', [
   'bedrock.authn', 'bedrock.authn-password', 'bedrock.form', 'bedrock.key',
   'bedrock.session'
 ]);
+
+bedrock.setRootModule(module);
 
 module.component('brTestHarness', TestHarnessComponent);
 
