@@ -103,9 +103,6 @@ export default function factory(
     }, options);
   };
 
-  // expose service to scope
-  $rootScope.app.services.key = service;
-
   return service;
 
   function monkeyPatchCollection(collection) {
