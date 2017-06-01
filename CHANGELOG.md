@@ -1,5 +1,11 @@
 # bedrock-angular-key ChangeLog
 
+## 4.0.2 - 2017-06-01
+
+## Fixed
+- Fix dependencies.
+- Fix test suite.
+
 ## 4.0.1 - 2017-05-31
 
 ### Fixed
