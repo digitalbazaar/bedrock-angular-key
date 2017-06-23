@@ -5,7 +5,7 @@
  *
  * @author Dave Longley
  */
-import pki from 'node-forge/js/pki.js';
+import forge from 'node-forge';
 
 export default {
   require: {
@@ -37,9 +37,6 @@ function Ctrl($scope, brAlertService, config) {
     };
   };
 
-  // prepare forge
-  var forge = {pki: pki()};
-
   self.generateKeyPair = function() {
     self.loading = true;
     brAlertService.clearFeedback();
@@ -49,7 +46,7 @@ function Ctrl($scope, brAlertService, config) {
         bits: bits,
         workers: -1,
         // workLoad: 100,
-        workerScript: '/bower-components/forge/js/prime.worker.js'
+        workerScript: '/modules/node-forge/dist/prime.worker.min.js'
       }, function(err, keypair) {
         if(err) {
           reject(err);

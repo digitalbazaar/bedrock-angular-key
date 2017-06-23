@@ -4,7 +4,7 @@
 var bedrock = global.bedrock;
 var protractor = global.protractor;
 var EC = protractor.ExpectedConditions;
-var uuid = require('uuid').v4;
+var uuid = require('uuid/v4');
 
 var app = bedrock.pages.keys.app;
 var key = bedrock.pages.keys.key;
