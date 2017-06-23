@@ -1,5 +1,10 @@
 # bedrock-angular-key ChangeLog
 
+## 4.0.4 - 2017-06-23
+
+## Fixed
+- Fix `node-forge` usage.
+
 ## 4.0.3 - 2017-06-23
 
 ## Fixed
