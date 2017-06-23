@@ -12,10 +12,19 @@
     "bedrock-angular-session": "^4.0.0",
     "bedrock-angular-ui": "^3.0.0",
     "font-awesome": "^4.7.0",
-    "node-forge": "~0.6.34"
+    "node-forge": "~0.7.1"
   },
   "bedrock": {
-    "browserDependencies": "all"
+    "browserDependencies": "all",
+    "systemjs": {
+      "packages": {
+        "node-forge": {
+          "map": {
+            "crypto": "@empty"
+          }
+        }
+      }
+    }
   },
   "repository": {
     "type": "git",
