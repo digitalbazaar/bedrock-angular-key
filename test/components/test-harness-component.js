@@ -19,15 +19,15 @@ function Ctrl($http, $location, brAuthnService) {
     methods: brAuthnService.methods
   };
 
-  self.onLogin = function(identity) {
+  self.onLogin = identity => {
     self.authenticated = true;
     self.identity = identity;
     $location.url('/key-test-alpha');
   };
 
-  self.addIdentity = function(userName) {
+  self.addIdentity = userName => {
     $http.post('/createidentity', createIdentity(userName))
-      .then(function(response) {
+      .then(response => {
         self.testData = response.data.identity;
       });
   };

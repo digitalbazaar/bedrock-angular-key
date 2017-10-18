@@ -17,7 +17,7 @@ bedrock.setRootModule(module);
 module.component('brTestHarness', TestHarnessComponent);
 
 /* @ngInject */
-module.config(function($routeProvider) {
+module.config($routeProvider => {
   $routeProvider
     .when('/', {
       title: 'Test Harness',

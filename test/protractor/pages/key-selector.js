@@ -9,12 +9,12 @@ module.exports = api;
 const protractor = global.protractor;
 const EC = protractor.ExpectedConditions;
 
-api.get = function(slug) {
+api.get = slug => {
   bedrock.get('/i/' + slug);
   return api;
 };
 
-api.addKeyFromModal = function(name) {
+api.addKeyFromModal = name => {
   const modal = element(by.tagName('br-modal'));
   browser.wait(EC.visibilityOf(modal), 3000);
   modal.element(by.buttonText('Add Key')).click();
@@ -34,18 +34,18 @@ api.addKeyFromModal = function(name) {
     EC.invisibilityOf(element(by.tagName('br-generate-key-pair-modal'))), 3000);
 };
 
-api.deselectKeyFromModal = function() {
+api.deselectKeyFromModal = () => {
   const modal = element(by.modal());
   modal.element(by.partialButtonText('Deselect')).click();
   bedrock.waitForModalTransition();
 };
 
-api.selectedKeyId = function(keySelector) {
+api.selectedKeyId = keySelector => {
   return keySelector.element(
     by.tagName('br-selector-selected')).element(by.tagName('small')).getText();
 };
 
-api.changeKeyModal = function(keySelector) {
+api.changeKeyModal = keySelector => {
   keySelector.element(
     by.attribute('ng-click', '$ctrl.showChoices=true')).click();
   bedrock.waitForModalTransition();

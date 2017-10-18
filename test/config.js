@@ -1,12 +1,12 @@
-var path = require('path');
+const path = require('path');
 
-module.exports = function(bedrock) {
-  var config = bedrock.config;
+module.exports = bedrock => {
+  const config = bedrock.config;
   if(!config.protractor) {
     return;
   }
-  var protractor = config.protractor.config;
-  var prepare =
+  const protractor = config.protractor.config;
+  const prepare =
     path.join(__dirname, 'protractor', 'prepare.js');
   protractor.params.config.onPrepare.push(prepare);
 };
