@@ -7,7 +7,7 @@
     "postinstall": "node --preserve-symlinks test compile-less"
   },
   "dependencies": {
-    "bedrock": "^1.6.0",
+    "bedrock": "^1.4.1",
     "bedrock-angular": "^3.0.0",
     "bedrock-angular-alert": "^3.0.0",
     "bedrock-angular-authn": "^3.0.0",
@@ -32,12 +32,12 @@
     "bedrock-permission": "^2.4.0",
     "bedrock-protractor": "digitalbazaar/bedrock-protractor#systemjs",
     "bedrock-rest": "^2.0.2",
-    "bedrock-server": "digitalbazaar/bedrock-server#forgeUpgrade",
+    "bedrock-server": "^2.2.0",
     "bedrock-session-http": "^3.0.2",
     "bedrock-test": "^1.1.0",
     "bedrock-validation": "^2.2.1",
-    "bedrock-views": "digitalbazaar/bedrock-views#webpack",
-    "bedrock-webpack": "digitalbazaar/bedrock-webpack#webpack",
+    "bedrock-views": "^5.1.0",
+    "bedrock-webpack": "^1.0.2",
     "chai": "^4.0.0",
     "chai-as-promised": "^5.3.0",
     "font-awesome": "^4.7.0",
@@ -61,6 +61,7 @@
       "bedrock-angular-selector",
       "bedrock-angular-session",
       "bedrock-angular-ui",
+      "bedrock-angular-material",
       "font-awesome",
       "node-forge"
     ],

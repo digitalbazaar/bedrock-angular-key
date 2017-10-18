@@ -1,13 +1,13 @@
 /*!
  * Copyright (c) 2016-2017 Digital Bazaar, Inc. All rights reserved.
  */
-var bedrock = global.bedrock;
+const bedrock = global.bedrock;
 
-var api = {};
+const api = {};
 module.exports = api;
 
-var protractor = global.protractor;
-var EC = protractor.ExpectedConditions;
+const protractor = global.protractor;
+const EC = protractor.ExpectedConditions;
 
 api.get = function(slug) {
   bedrock.get('/i/' + slug);
@@ -15,7 +15,7 @@ api.get = function(slug) {
 };
 
 api.addKeyFromModal = function(name) {
-  var modal = element(by.tagName('br-modal'));
+  const modal = element(by.tagName('br-modal'));
   browser.wait(EC.visibilityOf(modal), 3000);
   modal.element(by.buttonText('Add Key')).click();
   browser.wait(
@@ -35,7 +35,7 @@ api.addKeyFromModal = function(name) {
 };
 
 api.deselectKeyFromModal = function() {
-  var modal = element(by.modal());
+  const modal = element(by.modal());
   modal.element(by.partialButtonText('Deselect')).click();
   bedrock.waitForModalTransition();
 };

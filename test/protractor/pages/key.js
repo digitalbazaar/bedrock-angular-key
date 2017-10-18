@@ -2,7 +2,7 @@
  * Copyright (c) 2016-2017 Digital Bazaar, Inc. All rights reserved.
  */
 
-var api = {};
+const api = {};
 module.exports = api;
 
 api.COMPONENT_TAG = 'br-keys';

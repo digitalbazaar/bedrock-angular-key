@@ -5,11 +5,11 @@ import angular from 'angular';
 import * as bedrock from 'bedrock-angular';
 import TestHarnessComponent from './test-harness-component.js';
 
-var keyBasePath = window.data['bedrock-angular-key'].basePath;
+const keyBasePath = window.data['bedrock-angular-key'].basePath;
 
-var module = angular.module('bedrock.key-test', [
+const module = angular.module('bedrock.key-test', [
   'bedrock.authn', 'bedrock.authn-password', 'bedrock.form', 'bedrock.key',
-  'bedrock.session'
+  'bedrock.session', 'ngMaterial'
 ]);
 
 bedrock.setRootModule(module);

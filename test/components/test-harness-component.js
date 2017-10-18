@@ -8,7 +8,7 @@ export default {
 
 /* @ngInject */
 function Ctrl($http, $location, brAuthnService) {
-  var self = this;
+  const self = this;
   self.showLogin = false;
   self.testData = null;
   self.authenticated = false;
@@ -33,7 +33,7 @@ function Ctrl($http, $location, brAuthnService) {
   };
 
   function createIdentity(userName) {
-    var newIdentity = {
+    const newIdentity = {
       sysSlug: userName,
       email: userName + '@bedrock.dev',
       sysPassword: 'password',

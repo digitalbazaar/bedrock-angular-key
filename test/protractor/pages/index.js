@@ -1,4 +1,4 @@
-var pages = global.bedrock.pages || {};
+const pages = global.bedrock.pages || {};
 
 pages.keys = pages.keys || {};
 pages.keys.app = require('./app');

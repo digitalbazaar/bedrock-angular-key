@@ -1,16 +1,16 @@
 /*!
  * Copyright (c) 2016-2017 Digital Bazaar, Inc. All rights reserved.
  */
-var bedrock = global.bedrock;
-var protractor = global.protractor;
-var EC = protractor.ExpectedConditions;
-var uuid = require('uuid/v4');
+const bedrock = global.bedrock;
+const protractor = global.protractor;
+const EC = protractor.ExpectedConditions;
+const uuid = require('uuid/v4');
 
-var app = bedrock.pages.keys.app;
-var key = bedrock.pages.keys.key;
+const app = bedrock.pages.keys.app;
+const key = bedrock.pages.keys.key;
 
 describe('bedrock-angular-key', () => {
-  var testIdentity = {
+  const testIdentity = {
     sysIdentifier: uuid().substr(0, 23),
     password: 'password'
   };
@@ -44,7 +44,7 @@ describe('bedrock-angular-key', () => {
       it('should contain the proper elements, cancel closes modal', () => {
         element(by.buttonText('Generate Key')).isDisplayed()
           .should.eventually.be.true;
-        var cancelButton = element(by.buttonText('Cancel'));
+        const cancelButton = element(by.buttonText('Cancel'));
         cancelButton.isDisplayed()
           .should.eventually.be.true;
         $('a.close').isDisplayed().should.eventually.be.true;
@@ -61,7 +61,7 @@ describe('bedrock-angular-key', () => {
       });
       it('should generate a key pair', () => {
         element(by.buttonText('Generate Key')).click();
-        var saveButton = element(by.buttonText('Save'));
+        const saveButton = element(by.buttonText('Save'));
         browser.wait(EC.elementToBeClickable(saveButton), 30000);
         $('.modal-body').getText().should.eventually
           .contain('Your new signing key has been generated.');
