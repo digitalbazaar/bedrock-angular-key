@@ -11,12 +11,6 @@ config.views.system.packages.push({
   manifest: path.join(dir, 'package.json')
 });
 
-const parentDir = path.join(__dirname, '..');
-config.views.system.packages.push({
-  path: path.join(parentDir),
-  manifest: path.join(parentDir, 'package.json')
-});
-
 // mongodb config
 config.mongodb.name = 'bedrock_angular_key_app';
 config.mongodb.host = 'localhost';
