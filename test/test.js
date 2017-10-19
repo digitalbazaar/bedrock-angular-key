@@ -12,6 +12,7 @@ require('bedrock-authn-password');
 require('bedrock-key-http');
 require('bedrock-session-http');
 require('bedrock-views');
+require('bedrock-webpack');
 
 require('./app.config');
 
