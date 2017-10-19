@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "bedrock": "^1.4.1",
-    "bedrock-angular": "^3.0.0",
+    "bedrock-angular": "^4.0.0",
     "bedrock-angular-alert": "^3.0.0",
     "bedrock-angular-authn": "^3.0.0",
     "bedrock-angular-authn-password": "^2.0.0",
