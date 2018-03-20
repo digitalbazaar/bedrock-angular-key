@@ -1,5 +1,9 @@
 # bedrock-angular-key ChangeLog
 
+### Changed
+- **BREAKING**: Switch to material design.
+- Use ES6 syntax.
+
 ## 4.0.4 - 2017-06-23
 
 ## Fixed
