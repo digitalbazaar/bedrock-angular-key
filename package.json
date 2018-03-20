@@ -1,6 +1,6 @@
 {
   "name": "bedrock-angular-key",
-  "version": "5.0.0",
+  "version": "5.0.1-0",
   "description": "bedrock-angular-key",
   "main": "index.js",
   "dependencies": {
