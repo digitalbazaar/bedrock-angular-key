@@ -12,7 +12,7 @@
     "bedrock-angular-session": "^5.0.0",
     "bedrock-angular-ui": "^4.0.0",
     "font-awesome": "^4.7.0",
-    "node-forge": "~0.7.1"
+    "node-forge": "~0.10.0"
   },
   "bedrock": {
     "browserDependencies": "all",
